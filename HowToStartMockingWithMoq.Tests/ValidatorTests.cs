@@ -103,14 +103,17 @@ namespace HowToStartMockingWithMoq.Tests
         }
 
         [Test]
-        public void AddRuleShouldThrowExceptionIfFieldNameIsInvalid()
+        public void AddRuleShouldThrowExceptionIfRuleThrewException()
         {
+            var myField = 40000000;
             var v = new Validator();
             var rule = new Mock<IValidatorRule>();
+            rule.Setup(s => s.IsValid(myField)).Throws<StackOverflowException>();
+            v.AddRule(nameof(myField), rule.Object);
 
-            TestDelegate del = () => v.AddRule(null, rule.Object);
+            TestDelegate del = () => v.IsValid(nameof(myField), myField);
 
-            Assert.Throws<ArgumentNullException>(del);
+            Assert.Throws<StackOverflowException>(del);
         }
 
         [Test]
