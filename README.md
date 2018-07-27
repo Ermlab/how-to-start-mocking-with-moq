@@ -7,7 +7,7 @@ This project contains basics of mocking in .Net. We show how to create manual mo
 In project we show:
 - How to use manual mocks
 - How to write simple test with basic Moq usage
-- How to setup method with Moq throw an exception
+- How to setup method with Moq to throw an exception
 - How to check with Moq if mocked method was called and how many times 
 - How to setup method with Moq to return different values on each call
 - How to setup a method with Moq to raise an event or how to raise an event by hand
